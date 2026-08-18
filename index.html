@@ -67,10 +67,10 @@
             gap: 30px;
             margin-top: 40px;
         }
-        /* 게임 포트폴리오용 넓은 그리드 (16:9 비율 최적화) */
+        /* 게임 포트폴리오용 그리드 (1:1 정방형에 맞게 조정) */
         .portfolio-grid-game {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 30px;
             margin-top: 40px;
         }
@@ -96,13 +96,13 @@
             color: var(--text-muted);
             text-align: center;
         }
-        /* 게임 포트폴리오 이미지 (16:9 가로형) */
+        /* 게임 포트폴리오 이미지 (1:1 정방형) */
         .portfolio-item-game {
             position: relative;
             width: 100%;
             border-radius: 12px;
             overflow: hidden;
-            aspect-ratio: 16 / 9;
+            aspect-ratio: 1 / 1;
             background-color: var(--card-bg);
             border: 1px solid rgba(255,255,255,0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -114,7 +114,7 @@
         }
         .portfolio-item:hover, .portfolio-item-game:hover {
             transform: translateY(-5px);
-            border-color: rgba(129, 178, 154, 0.5); /* 세이지 그린 호버 */
+            border-color: rgba(129, 178, 154, 0.5);
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
         .portfolio-item img, .portfolio-item-game img {
@@ -170,7 +170,6 @@
             border-radius: 2px;
         }
         
-        /* 3개의 기술 카드가 가로로 배치되도록 수정 */
         .skills-wrapper {
             display: flex;
             justify-content: center;
@@ -282,7 +281,6 @@
         <h2 class="section-title">영화 포트폴리오</h2>
         <div class="portfolio-grid">
             
-            <!-- 포트폴리오 1 (mousetrap) -->
             <div class="portfolio-card">
                 <div class="portfolio-item">
                      <img src="mousetrap.jpg" alt="작업물 포스터 1"> 
@@ -294,7 +292,6 @@
                 </div>
             </div>
 
-            <!-- 포트폴리오 2 (gajigaji) -->
             <div class="portfolio-card">
                 <div class="portfolio-item">
                     <img src="gajigaji.jpg" alt="작업물 포스터 2"> 
@@ -306,7 +303,6 @@
                 </div>
             </div>
 
-            <!-- 포트폴리오 3 (paperhouse) -->
             <div class="portfolio-card">
                 <div class="portfolio-item">
                    <img src="paperhouse.jpg" alt="작업물 포스터 3">
@@ -318,7 +314,6 @@
                 </div>
             </div>
 
-            <!-- 포트폴리오 4 (kill) -->
             <div class="portfolio-card">
                 <div class="portfolio-item">
                   <img src="kill.jpg" alt="작업물 포스터 4">
@@ -338,16 +333,15 @@
         <h2 class="section-title">게임 포트폴리오</h2>
         <div class="portfolio-grid-game">
             
-            <!-- 게임 포트폴리오 1 -->
+            <!-- 게임 포트폴리오 1 (1:1 비율 반영) -->
             <div class="portfolio-card">
                 <div class="portfolio-item-game">
-                    <!-- 게임 이미지는 보통 가로형(16:9)이므로 여기에 맞게 들어갑니다 -->
-                    <!-- <img src="game_portfolio1.jpg" alt="게임 작업물 1"> -->
-                    <div class="portfolio-placeholder">게임 이미지 1<br>(16:9 비율 추천)</div>
+                    <img src="WTTR_thumbnail_banner.jpg" alt="게임 작업물 1">
+                    <div class="portfolio-placeholder">게임 이미지 1<br>(1:1 비율 추천)</div>
                 </div>
                 <div class="portfolio-info">
-                    <p class="portfolio-title">프로젝트 A (Game Title)</p>
-                    <p class="portfolio-role">Wwise Integration / Sound Design</p>
+                    <p class="portfolio-title">Way To The Rose</p>
+                    <p class="portfolio-role">Sound Design / Wwise</p>
                 </div>
             </div>
 
@@ -355,11 +349,23 @@
             <div class="portfolio-card">
                 <div class="portfolio-item-game">
                     <!-- <img src="game_portfolio2.jpg" alt="게임 작업물 2"> -->
-                    <div class="portfolio-placeholder">게임 이미지 2<br>(16:9 비율 추천)</div>
+                    <div class="portfolio-placeholder">게임 이미지 2<br>(1:1 비율 추천)</div>
                 </div>
                 <div class="portfolio-info">
                     <p class="portfolio-title">프로젝트 B (Game Title)</p>
                     <p class="portfolio-role">SFX & Foley</p>
+                </div>
+            </div>
+            
+            <!-- 게임 포트폴리오 3 -->
+            <div class="portfolio-card">
+                <div class="portfolio-item-game">
+                    <!-- <img src="game_portfolio3.jpg" alt="게임 작업물 3"> -->
+                    <div class="portfolio-placeholder">게임 이미지 3<br>(1:1 비율 추천)</div>
+                </div>
+                <div class="portfolio-info">
+                    <p class="portfolio-title">프로젝트 C (Game Title)</p>
+                    <p class="portfolio-role">BGM / Integration</p>
                 </div>
             </div>
 
