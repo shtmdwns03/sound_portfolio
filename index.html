@@ -54,6 +54,30 @@
             word-break: keep-all;
         }
 
+        /* Video Showcase Section (추가됨) */
+        .showcase {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: -40px auto 40px auto; /* 영웅 섹션과 부드럽게 연결되도록 음수 마진 */
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 비율 유지 */
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         /* Portfolio Section */
         .portfolio {
             padding: 80px 20px;
@@ -369,6 +393,14 @@
                 </div>
             </div>
 
+        </div>
+    </section>
+
+        <!-- Video Showcase Section (추가됨) -->
+    <section class="showcase">
+        <div class="video-container">
+            <!-- 유튜브 영상 링크 부분 (src 안의 주소를 변경해주세요) -->
+            <iframe src="https://www.youtube.com/embed/Ie8pelc16e0" title="Sound Design Portfolio" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </section>
 
