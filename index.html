@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사운드 포스트 프로덕션 | Sound Studio Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0c10;
+            --card-bg: #1f2833;
+            --text-main: #ffffff;
+            --text-muted: #c5c6c7;
+            --accent: #66fcf1;
+            --accent-hover: #45a29e;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 120px 20px 80px;
+            background: radial-gradient(circle at center, #1f2833 0%, var(--bg-color) 70%);
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            word-break: keep-all;
+        }
+        .hero h1 span {
+            color: var(--accent);
+        }
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            word-break: keep-all;
+        }
+        .hero p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            word-break: keep-all;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: var(--bg-color);
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .portfolio-card {
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .portfolio-item {
+            position: relative;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 2 / 3;
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-align: center;
+        }
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(102, 252, 241, 0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+        .portfolio-placeholder {
+            z-index: 0;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+        .portfolio-info {
+            margin-top: 15px;
+            text-align: center;
+            width: 100%;
+        }
+        .portfolio-title {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            font-weight: 600;
+            margin: 0 0 5px 0;
+        }
+        .portfolio-role {
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin: 0;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 20px 120px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent);
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+        
+        /* Layout 수정: 4개 카드 2x2 그리드 */
+        .services-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+        }
+        .row {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.05);
+            flex: 1 1 320px;
+            max-width: 400px; /* 카드가 4개로 줄어서 너비를 조금 더 넓게 허용 */
+            box-sizing: border-box;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: rgba(102, 252, 241, 0.3);
+        }
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            margin: 0 0 10px 0;
+            color: var(--text-main);
+        }
+        .card .subtitle {
+            color: var(--accent);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            display: block;
+        }
+        .detail-group {
+            margin-bottom: 20px;
+        }
+        .detail-group:last-child {
+            margin-bottom: 0;
+        }
+        .detail-label {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        .detail-group p {
+            color: var(--text-muted);
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta {
+            text-align: center;
+            padding: 100px 20px;
+            background-color: #151b22;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            word-break: keep-all;
+        }
+        .cta p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 50px auto;
+            word-break: keep-all;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            color: var(--text-muted);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .contact-item {
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .contact-item strong {
+            color: var(--text-main);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero h2 { font-size: 1.2rem; }
+            .section-title { font-size: 2rem; }
+            .contact-info { flex-direction: column; align-items: center; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>눈으로 본 것을, <span>귀로 믿게 만듭니다.</span></h1>
+        <h2>상상 속 세계관부터 찰나의 감정선까지, 영화의 깊이를 더하는 사운드 포스트 프로덕션</h2>
+        <p>감독님의 치열한 고민이 관객의 온몸으로 전달될 수 있도록 돕습니다. 단편 영화의 섬세함부터 상업 영화의 묵직한 스케일까지, 스크린에 최적화된 영화 사운드 솔루션을 제안합니다.</p>
+    </header>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio">
+        <h2 class="section-title">포트폴리오</h2>
+        <div class="portfolio-grid">
+            
+            <!-- 포트폴리오 1 (mousetrap) -->
+            <div class="portfolio-card">
+                <div class="portfolio-item">
+                     <img src="C:\Users\shtmd\Desktop\portfolio\mousetrap.jpg" alt="작업물 포스터 1"> 
+                    <div class="portfolio-placeholder">이미지 1<br>(2:3 비율 추천)</div>
+                </div>
+                <div class="portfolio-info">
+                    <p class="portfolio-title">들쥐</p>
+                    <p class="portfolio-role">Sound Effect</p>
+                </div>
+            </div>
+
+            <!-- 포트폴리오 2 (gajigaji) -->
+            <div class="portfolio-card">
+                <div class="portfolio-item">
+                    <img src="C:\Users\shtmd\Desktop\portfolio\gajigaji.jpg" alt="작업물 포스터 2"> 
+                    <div class="portfolio-placeholder">이미지 2<br>(2:3 비율 추천)</div>
+                </div>
+                <div class="portfolio-info">
+                    <p class="portfolio-title">가지가지 할거야!</p>
+                    <p class="portfolio-role">Foley Recording/Editing</p>
+                </div>
+            </div>
+
+            <!-- 포트폴리오 3 (paperhouse) -->
+            <div class="portfolio-card">
+                <div class="portfolio-item">
+                   <img src="C:\Users\shtmd\Desktop\portfolio\paperhouse.jpg" alt="작업물 포스터 3">
+                    <div class="portfolio-placeholder">이미지 3<br>(2:3 비율 추천)</div>
+                </div>
+                <div class="portfolio-info">
+                    <p class="portfolio-title">종이집</p>
+                    <p class="portfolio-role"> Mixing / ADR </p>
+                </div>
+            </div>
+
+            <!-- 포트폴리오 4 (kill) -->
+            <div class="portfolio-card">
+                <div class="portfolio-item">
+                  <img src="C:\Users\shtmd\Desktop\portfolio\kill.jpg" alt="작업물 포스터 4">
+                    <div class="portfolio-placeholder">이미지 4<br>(2:3 비율 추천)</div>
+                </div>
+                <div class="portfolio-info">
+                    <p class="portfolio-title">킬</p>
+                    <p class="portfolio-role">Sound Effect</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <h2 class="section-title">서비스</h2>
+        
+        <div class="services-wrapper">
+            <!-- 윗줄: 2개 아이템 중앙 정렬 -->
+            <div class="row">
+                <!-- Service 1 -->
+                <div class="card">
+                    <span class="icon">🎧</span>
+                    <h3>후시녹음 (ADR)</h3>
+                    <span class="subtitle">감정선의 빈틈을 채우고 생명력을 부여합니다</span>
+                    <div class="detail-group">
+                        <span class="detail-label">서비스</span>
+                        <p>훼손된 현장 오디오 복원 및 배우 대사 재녹음</p>
+                    </div>
+                    <div class="detail-group">
+                        <span class="detail-label">서비스 효과</span>
+                        <p>의도치 않은 소음으로 묻혀버린 대사를 살려냅니다. 배우의 숨소리와 입모양을 1프레임 단위로 맞추어 극강의 자연스러움을 만듭니다.</p>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="card">
+                    <span class="icon">🥾</span>
+                    <h3>폴리 (Foley)</h3>
+                    <span class="subtitle">화면 밖의 현실감을 스튜디오에서 빚어냅니다</span>
+                    <div class="detail-group">
+                        <span class="detail-label">서비스</span>
+                        <p>배우의 발소리, 옷깃 스치는 소리, 소품의 질감을 살리는 사운드</p>
+                    </div>
+                    <div class="detail-group">
+                        <span class="detail-label">서비스 효과</span>
+                        <p>영상 속 인물이 진짜 그곳에 존재한다는 설득력을 줍니다. 작품만의 독창적인 질감과 온도를 덧입혀 몰입도를 극대화합니다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 아랫줄: 2개 아이템 중앙 정렬 -->
+            <div class="row">
+                <!-- Service 3 -->
+                <div class="card">
+                    <span class="icon">🪄</span>
+                    <h3>사운드 디자인</h3>
+                    <span class="subtitle">작품의 스케일과 분위기를 확장합니다</span>
+                    <div class="detail-group">
+                        <span class="detail-label">서비스</span>
+                        <p>장르에 특화된 SFX, 앰비언스 창작 및 영상 트랜지션 효과음 제작</p>
+                    </div>
+                    <div class="detail-group">
+                        <span class="detail-label">서비스 효과</span>
+                        <p>시각적 연출의 한계를 뛰어넘는 스케일을 부여합니다. 사운드로 씬의 감정을 고조시키고 영화적 세계관을 완성합니다.</p>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="card">
+                    <span class="icon">🎛️</span>
+                    <h3>믹싱 및 마스터링</h3>
+                    <span class="subtitle">어떤 환경에서도 감독의 의도대로 들리게 만듭니다</span>
+                    <div class="detail-group">
+                        <span class="detail-label">서비스</span>
+                        <p>대사/음악/효과음 밸런싱, 극장용(5.1ch/7.1ch) 및 영화제/OTT 규격 믹싱</p>
+                    </div>
+                    <div class="detail-group">
+                        <span class="detail-label">서비스 효과</span>
+                        <p>상영 매체에 최적화된 명료한 대사 전달력과 풍부한 공간감을 제공하여, 관객이 영화에 온전히 빠져들 수 있는 최종 라우드니스를 다듬습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA & Contact Section -->
+    <section class="cta">
+        <h2>"이제 사운드 걱정은 내려놓고, 연출에만 집중하세요."</h2>
+        <p>단편 영화부터 상업 영화까지, 당신의 치열한 여정에 든든한 사운드 파트너가 되어 드리겠습니다. 작품에 딱 맞는 사운드 방향성을 함께 고민해 드립니다.</p>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <strong>Email</strong> 
+                <span>shtmdwns03@gmail.com</span>
+            </div>
+            <div class="contact-item">
+                <strong>Phone</strong> 
+                <span>010-6636-6034</span>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
