@@ -6,14 +6,15 @@
     <title>노승준 - 사운드</title>
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
     <style>
-      :root {
-        --bg-color: #1c1c1c;       /* 부드러운 다크 그레이 */
-        --card-bg: #282828;        /* 살짝 톤업된 그레이 */
-        --text-main: #eaeaea;      /* 아이보리빛이 도는 흰색 */
-        --text-muted: #a0a0a0;     /* 차분한 회색 */
-        --accent: #81b29a;         /* 차분한 세이지 그린(녹색 계열) */
-        --accent-hover: #6b9981;   /* 짙은 세이지 그린 */
-    }
+        :root {
+            --bg-color: #1c1c1c;       /* 부드러운 다크 그레이 */
+            --card-bg: #282828;        /* 살짝 톤업된 그레이 */
+            --text-main: #eaeaea;      /* 아이보리빛이 도는 흰색 */
+            --text-muted: #a0a0a0;     /* 차분한 회색 */
+            --accent: #81b29a;         /* 차분한 세이지 그린(녹색 계열) */
+            --accent-hover: #6b9981;   /* 짙은 세이지 그린 */
+            --nav-bg: rgba(28, 28, 28, 0.85); /* 내비게이션 반투명 배경 */
+        }
         body {
             margin: 0;
             padding: 0;
@@ -22,12 +23,56 @@
             color: var(--text-main);
             line-height: 1.6;
         }
-        
-        /* Hero Section */
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        nav a:hover, nav a.active {
+            color: var(--accent);
+        }
+
+        /* SPA Page Container */
+        .page {
+            display: none;
+            padding-top: 90px; /* nav bar offset */
+            min-height: calc(100vh - 90px);
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Section (About) */
         .hero {
             text-align: center;
-            padding: 120px 20px 80px;
-            background: radial-gradient(circle at center, #282828 0%, var(--bg-color) 70%);
+            padding: 80px 20px 40px;
         }
         .hero h1 {
             font-size: 3.5rem;
@@ -54,11 +99,11 @@
             word-break: keep-all;
         }
 
-        /* Video Showcase Section */
+        /* Video Showcase Section (Works) */
         .showcase {
-            padding: 40px 20px;
+            padding: 20px 20px 40px;
             max-width: 1000px;
-            margin: -40px auto 40px auto; 
+            margin: 0 auto;
         }
         .video-container {
             position: relative;
@@ -80,101 +125,7 @@
 
         /* Portfolio Section */
         .portfolio {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: var(--bg-color);
-        }
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        /* 게임 포트폴리오용 그리드 (1:1 정방형에 맞게 조정) */
-        .portfolio-grid-game {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        .portfolio-card {
-            background-color: transparent;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        /* 영화 포트폴리오 이미지 (2:3 세로형) */
-        .portfolio-item {
-            position: relative;
-            width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-            aspect-ratio: 2 / 3;
-            background-color: var(--card-bg);
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            text-align: center;
-        }
-        /* 게임 포트폴리오 이미지 (1:1 정방형) */
-        .portfolio-item-game {
-            position: relative;
-            width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-            aspect-ratio: 1 / 1;
-            background-color: var(--card-bg);
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            text-align: center;
-        }
-        .portfolio-item:hover, .portfolio-item-game:hover {
-            transform: translateY(-5px);
-            border-color: rgba(129, 178, 154, 0.5);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-        .portfolio-item img, .portfolio-item-game img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 10;
-        }
-        .portfolio-placeholder {
-            z-index: 0;
-            padding: 20px;
-            font-size: 0.9rem;
-        }
-        .portfolio-info {
-            margin-top: 15px;
-            text-align: center;
-            width: 100%;
-        }
-        .portfolio-title {
-            font-size: 1.1rem;
-            color: var(--text-main);
-            font-weight: 600;
-            margin: 0 0 5px 0;
-        }
-        .portfolio-role {
-            font-size: 0.9rem;
-            color: var(--accent);
-            margin: 0;
-        }
-
-        /* Skills Section */
-        .skills {
-            padding: 80px 20px 120px;
+            padding: 40px 20px 80px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -194,6 +145,123 @@
             border-radius: 2px;
         }
         
+        /* 반응형 중앙 정렬을 위한 Flexbox 기반 Grid로 변경 */
+        .portfolio-grid, .portfolio-grid-game {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .portfolio-grid .portfolio-card {
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1 1 250px;
+            max-width: 280px;
+        }
+
+        .portfolio-grid-game .portfolio-card {
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1 1 280px;
+            max-width: 320px;
+        }
+
+        /* 포트폴리오 아이템 (Hover Effect 추가) */
+        .portfolio-item, .portfolio-item-game {
+            position: relative;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-align: center;
+            cursor: pointer;
+        }
+        .portfolio-item { aspect-ratio: 2 / 3; }
+        .portfolio-item-game { aspect-ratio: 1 / 1; }
+
+        .portfolio-item img, .portfolio-item-game img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+        .portfolio-placeholder {
+            z-index: 0;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Hover Overlay Styles */
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 20;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .portfolio-item:hover, .portfolio-item-game:hover {
+            transform: translateY(-5px);
+            border-color: rgba(129, 178, 154, 0.5);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        .portfolio-item:hover .portfolio-overlay, .portfolio-item-game:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        .overlay-title {
+            font-size: 1.3rem;
+            color: var(--text-main);
+            font-weight: 600;
+            margin-bottom: 8px;
+            transform: translateY(15px);
+            transition: transform 0.3s ease;
+            text-align: center;
+            word-break: keep-all;
+        }
+        .overlay-role {
+            font-size: 0.95rem;
+            color: var(--accent);
+            transform: translateY(15px);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        .portfolio-item:hover .overlay-title, .portfolio-item:hover .overlay-role,
+        .portfolio-item-game:hover .overlay-title, .portfolio-item-game:hover .overlay-role {
+            transform: translateY(0);
+        }
+
+        /* Skills Section (About) */
+        .skills {
+            padding: 40px 20px 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
         .skills-wrapper {
             display: flex;
             justify-content: center;
@@ -244,12 +312,26 @@
             font-weight: 600;
         }
 
-        /* CTA Section */
+        /* CTA Section (Contact) */
+        #page-contact {
+            display: none; /* JS 제어 */
+        }
+        #page-contact.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
         .cta {
             text-align: center;
             padding: 100px 20px;
             background-color: var(--card-bg);
-            border-top: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 20px;
+            max-width: 800px;
+            width: 90%;
+            margin: 40px auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
         .cta h2 {
             font-size: 2.2rem;
@@ -269,17 +351,19 @@
             gap: 40px;
             flex-wrap: wrap;
             color: var(--text-muted);
-            max-width: 900px;
-            margin: 0 auto;
         }
         .contact-item {
             font-size: 1rem;
             display: flex;
             align-items: center;
             gap: 10px;
+            background: var(--bg-color);
+            padding: 15px 25px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.05);
         }
         .contact-item strong {
-            color: var(--text-main);
+            color: var(--accent);
         }
 
         @media (max-width: 768px) {
@@ -287,172 +371,192 @@
             .hero h2 { font-size: 1.2rem; }
             .section-title { font-size: 2rem; }
             .contact-info { flex-direction: column; align-items: center; gap: 20px; }
+            .contact-item { width: 100%; box-sizing: border-box; justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Hero Section -->
-    <header class="hero">
-        <h1>안녕하세요, <span>노승준입니다.</span></h1>
-        <h2>영화/애니메이션/게임 사운드 디자이너</h2>
-        <p>매체의 의도가 관객에게 전달될 수 있도록 돕습니다. </p>
-        <p>각 플랫폼에 최적화 된 사운드 경험을 줄 수 있도록 노력합니다.</p>
-    </header>
+    <!-- Navigation Bar (순서 변경: About -> Works -> Contact) -->
+    <nav>
+        <a onclick="switchPage('page-about', this)" class="active">About</a>
+        <a onclick="switchPage('page-works', this)">Works</a>
+        <a onclick="switchPage('page-contact', this)">Contact</a>
+    </nav>
 
-    <!-- Movie Portfolio Section -->
-    <section class="portfolio">
-        <h2 class="section-title">영상 포트폴리오</h2>
-        <div class="portfolio-grid">
+    <!-- ==================== ABOUT PAGE (메인 화면) ==================== -->
+    <div id="page-about" class="page active">
+        <!-- Hero Section -->
+        <header class="hero">
+            <h1>안녕하세요, <span>노승준입니다.</span></h1>
+            <h2>영화/애니메이션/게임 사운드 디자이너</h2>
+            <p>매체의 의도가 관객에게 전달될 수 있도록 돕습니다. </p>
+            <p>각 플랫폼에 최적화 된 사운드 경험을 줄 수 있도록 노력합니다.</p>
+        </header>
+
+        <!-- Technical Skills Section -->
+        <section class="skills">
+            <h2 class="section-title">Technical Skills</h2>
             
-            <div class="portfolio-card">
-                <div class="portfolio-item">
-                     <img src="mousetrap.jpg" alt="작업물 포스터 1"> 
-                    <div class="portfolio-placeholder">이미지 1<br>(2:3 비율 추천)</div>
+            <div class="skills-wrapper">
+                <div class="card">
+                    <span class="icon">⚡</span>
+                    <h3>Optimized Workflow</h3>
+                    <span class="subtitle">Pro Tools & Soundminer</span>
+                    <p>방대한 사운드 라이브러리를 <strong>Soundminer</strong>에 인덱싱하여 원하는 소리를 즉각적으로 탐색하고 배치하는 최적화된 워크플로우를 구축했습니다. <strong>Pro Tools</strong> 환경에서 빠르고 정확한 사운드 에디팅 및 믹싱을 수행합니다.</p>
                 </div>
-                <div class="portfolio-info">
-                    <p class="portfolio-title">들쥐</p>
-                    <p class="portfolio-role">Sound Effect</p>
+
+                <div class="card">
+                    <span class="icon">🪄</span>
+                    <h3>Advanced Sound Design</h3>
+                    <span class="subtitle">Plugins</span>
+                    <p><strong>Fabfilter, Kilohearts, Soundtoys, iZotope</strong> 등 업계 표준 플러그인을 적극 활용합니다. 단순한 이펙팅을 넘어 텍스처와 공간감이 살아있는 독창적이고 섬세한 사운드 디자인을 구현합니다.</p>
+                </div>
+
+                <div class="card">
+                    <span class="icon">🎮</span>
+                    <h3>Game Audio Integration</h3>
+                    <span class="subtitle">Audiokinetic Wwise</span>
+                    <p><strong>Wwise</strong>를 이용한 게임 사운드 미들웨어 인테그레이션 게임 엔진 연동을 통해 플레이어의 행동과 환경 변화에 반응하는 다이내믹하고 인터랙티브한 오디오 시스템을 설계 및 적용합니다.</p>
                 </div>
             </div>
+        </section>
+    </div>
 
-            <div class="portfolio-card">
-                <div class="portfolio-item">
-                    <img src="gajigaji.jpg" alt="작업물 포스터 2"> 
-                    <div class="portfolio-placeholder">이미지 2<br>(2:3 비율 추천)</div>
-                </div>
-                <div class="portfolio-info">
-                    <p class="portfolio-title">가지가지 할거야!</p>
-                    <p class="portfolio-role">Foley Recording/Editing</p>
-                </div>
-            </div>
-
-            <div class="portfolio-card">
-                <div class="portfolio-item">
-                   <img src="paperhouse.jpg" alt="작업물 포스터 3">
-                    <div class="portfolio-placeholder">이미지 3<br>(2:3 비율 추천)</div>
-                </div>
-                <div class="portfolio-info">
-                    <p class="portfolio-title">종이집</p>
-                    <p class="portfolio-role"> Mixing / ADR </p>
-                </div>
-            </div>
-
-            <div class="portfolio-card">
-                <div class="portfolio-item">
-                  <img src="kill.jpg" alt="작업물 포스터 4">
-                    <div class="portfolio-placeholder">이미지 4<br>(2:3 비율 추천)</div>
-                </div>
-                <div class="portfolio-info">
-                    <p class="portfolio-title">킬</p>
-                    <p class="portfolio-role">Sound Effect</p>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Game Portfolio Section -->
-    <section class="portfolio" style="padding-top: 0;">
-        <h2 class="section-title">게임 포트폴리오</h2>
-        <div class="portfolio-grid-game">
-            
-            <!-- 게임 포트폴리오 1 (1:1 비율 반영) -->
-            <div class="portfolio-card">
-                <div class="portfolio-item-game">
-                    <img src="WTTR_thumbnail_banner.png" alt="게임 작업물 1">
-                    <div class="portfolio-placeholder">게임 이미지 1<br>(1:1 비율 추천)</div>
-                </div>
-                <div class="portfolio-info">
-                    <p class="portfolio-title">Way To The Rose</p>
-                    <p class="portfolio-role">Sound Design / Wwise</p>
-                </div>
-            </div>
-
-           <!-- 게임 포트폴리오 2 
-            <div class="portfolio-card">
-                <div class="portfolio-item-game">
-                    <img src="game_portfolio2.jpg" alt="게임 작업물 2">
-                    <div class="portfolio-placeholder">게임 이미지 2<br>(1:1 비율 추천)</div>
-                </div>
-                <div class="portfolio-info">
-                    <p class="portfolio-title">프로젝트 B (Game Title)</p>
-                    <p class="portfolio-role">SFX & Foley</p>
-                </div>
-            </div>
-            -->
-            
-            <!-- 게임 포트폴리오 3 
-            <div class="portfolio-card">
-                <div class="portfolio-item-game">
-                    <img src="game_portfolio3.jpg" alt="게임 작업물 3"> 
-                    <div class="portfolio-placeholder">게임 이미지 3<br>(1:1 비율 추천)</div>
-                </div>
-                <div class="portfolio-info">
-                    <p class="portfolio-title">프로젝트 C (Game Title)</p>
-                    <p class="portfolio-role">BGM / Integration</p>
-                </div>
-            </div>
-            -->
-
-        </div>
-    </section>
-
-      <!-- Video Showcase Section -->
-    <section class="showcase">
-        <div class="video-container">
-            <!-- 사용자가 제공한 유튜브 임베드 코드 (반응형 유지를 위해 width, height 속성은 제거하고 클래스 스타일에 맡김) -->
-            <iframe src="https://www.youtube.com/embed/Ie8pelc16e0?si=g5WDtXyeiTi_rO_m" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-    </section>
-
-    <!-- Technical Skills Section -->
-    <section class="skills">
-        <h2 class="section-title">Technical Skills</h2>
+    <!-- ==================== WORKS PAGE ==================== -->
+    <div id="page-works" class="page">
         
-        <div class="skills-wrapper">
-            <!-- Skill 1 -->
-            <div class="card">
-                <span class="icon">⚡</span>
-                <h3>Optimized Workflow</h3>
-                <span class="subtitle">Pro Tools & Soundminer</span>
-                <p>방대한 사운드 라이브러리를 <strong>Soundminer</strong>에 인덱싱하여 원하는 소리를 즉각적으로 탐색하고 배치하는 최적화된 워크플로우를 구축했습니다. <strong>Pro Tools</strong> 환경에서 빠르고 정확한 사운드 에디팅 및 믹싱을 수행합니다.</p>
-            </div>
+        <!-- Movie Portfolio Section -->
+        <section class="portfolio">
+            <h2 class="section-title">영상 포트폴리오</h2>
+            <div class="portfolio-grid">
+                
+                <div class="portfolio-card">
+                    <div class="portfolio-item">
+                        <img src="mousetrap.jpg" alt="작업물 포스터 1"> 
+                        <div class="portfolio-placeholder">이미지 1<br>(2:3 비율 추천)</div>
+                        <div class="portfolio-overlay">
+                            <div class="overlay-title">[Netflix] 들쥐</div>
+                            <div class="overlay-role">Sound Effect</div>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Skill 2 -->
-            <div class="card">
-                <span class="icon">🪄</span>
-                <h3>Advanced Sound Design</h3>
-                <span class="subtitle">Plugins</span>
-                <p><strong>Fabfilter, Kilohearts, Soundtoys, iZotope</strong> 등 업계 표준 플러그인을 적극 활용합니다. 단순한 이펙팅을 넘어 텍스처와 공간감이 살아있는 독창적이고 섬세한 사운드 디자인을 구현합니다.</p>
-            </div>
+                <div class="portfolio-card">
+                    <div class="portfolio-item">
+                        <img src="gajigaji.jpg" alt="작업물 포스터 2"> 
+                        <div class="portfolio-placeholder">이미지 2<br>(2:3 비율 추천)</div>
+                        <div class="portfolio-overlay">
+                            <div class="overlay-title">[Animation] 가지가지 할거야!</div>
+                            <div class="overlay-role">Foley Recording/Editing</div>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Skill 3 -->
-            <div class="card">
-                <span class="icon">🎮</span>
-                <h3>Game Audio Integration</h3>
-                <span class="subtitle">Audiokinetic Wwise</span>
-                <p><strong>Wwise</strong>를 이용한 게임 사운드 미들웨어 인테그레이션 게임 엔진 연동을 통해 플레이어의 행동과 환경 변화에 반응하는 다이내믹하고 인터랙티브한 오디오 시스템을 설계 및 적용합니다.</p>
-            </div>
-        </div>
-    </section>
+                <div class="portfolio-card">
+                    <div class="portfolio-item">
+                        <img src="paperhouse.jpg" alt="작업물 포스터 3">
+                        <div class="portfolio-placeholder">이미지 3<br>(2:3 비율 추천)</div>
+                        <div class="portfolio-overlay">
+                            <div class="overlay-title">[Short Film] 종이집</div>
+                            <div class="overlay-role">Mixing / ADR</div>
+                        </div>
+                    </div>
+                </div>
 
-    <!-- CTA & Contact Section -->
-    <section class="cta">
-        <h2>어떤 사운드가 필요하신가요?</h2>
-        <p>기획부터 마무리까지 최선을 다하겠습니다</p>
-        
-        <div class="contact-info">
-            <div class="contact-item">
-                <strong>Email</strong> 
-                <span>shtmdwns03@gmail.com</span>
-            </div>
-            <div class="contact-item">
-                <strong>Phone</strong> 
-                <span>010-6636-6034</span>
-            </div>
-        </div>
-    </section>
+                <div class="portfolio-card">
+                    <div class="portfolio-item">
+                        <img src="kill.jpg" alt="작업물 포스터 4">
+                        <div class="portfolio-placeholder">이미지 4<br>(2:3 비율 추천)</div>
+                        <div class="portfolio-overlay">
+                            <div class="overlay-title">[Short Film] 킬</div>
+                            <div class="overlay-role">Sound Effect</div>
+                        </div>
+                    </div>
+                </div>
 
+            </div>
+        </section>
+
+        <!-- Game Portfolio Section -->
+        <section class="portfolio" style="padding-top: 0;">
+            <h2 class="section-title">게임 포트폴리오</h2>
+            <div class="portfolio-grid-game">
+                
+                <div class="portfolio-card">
+                    <div class="portfolio-item-game">
+                        <img src="WTTR_thumbnail_banner.png" alt="게임 작업물 1">
+                        <div class="portfolio-placeholder">게임 이미지 1<br>(1:1 비율 추천)</div>
+                        <div class="portfolio-overlay">
+                            <div class="overlay-title">[Indie Game] Way To The Rose</div>
+                            <div class="overlay-role">Sound Design / Wwise</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Video Showcase Section (숨김 처리 및 맨 아래로 이동) -->
+        <!-- 
+        <section class="showcase">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/Ie8pelc16e0?si=g5WDtXyeiTi_rO_m" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </section>
+        -->
+
+    </div>
+
+    <!-- ==================== CONTACT PAGE ==================== -->
+    <div id="page-contact" class="page">
+        <!-- CTA & Contact Section -->
+        <section class="cta">
+            <h2>어떤 사운드가 필요하신가요?</h2>
+            <p>기획부터 마무리까지 최선을 다하겠습니다</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong>Email</strong> 
+                    <span>shtmdwns03@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <strong>Phone</strong> 
+                    <span>010-6636-6034</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // 페이지 전환 스크립트
+        function switchPage(pageId, navElement) {
+            // 모든 페이지 숨기기
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // 모든 네비게이션 활성화 스타일 제거
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // 선택된 페이지 보여주기
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            // 클릭된 네비게이션 링크 활성화
+            if (navElement) {
+                navElement.classList.add('active');
+            }
+
+            // 페이지 상단으로 스크롤 부드럽게 이동
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
