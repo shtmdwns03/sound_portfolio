@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>노승준 - 사운드</title>
+    <title>노승준 - 사운드 디자이너 지원서</title>
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
     <style>
-   :root {
+        :root {
             --bg-color: #121212;       /* 완전한 시네마틱 다크 */
             --card-bg: #1e1e1e;        /* 아주 짙은 차콜 */
             --text-main: #ffffff;      /* 순백색 */
@@ -90,41 +90,182 @@
         /* SPA Page Container */
         .page {
             display: none;
-            padding-top: 90px;
-            min-height: calc(100vh - 90px);
+            padding-top: 70px;
+            min-height: calc(100vh - 70px);
         }
         .page.active {
             display: block;
             animation: pageFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-
         @keyframes pageFadeIn {
             0% { opacity: 0; transform: translateY(20px) scale(0.98); }
             100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* Hero Section (About) */
-        .hero {
-            text-align: center;
-            padding: 80px 20px 40px;
+        /* ================= ABOUT PAGE (이력서/CV 스타일) ================= */
+        .resume-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px 100px;
         }
-        .hero h1, .hero h2, .hero p {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: textFadeUp 0.8s forwards;
+        .resume-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 40px;
+            margin-bottom: 50px;
         }
-        .hero h1 { animation-delay: 0.1s; font-size: 3.5rem; margin-bottom: 20px; color: var(--text-main); word-break: keep-all;}
-        .hero h1 span { color: var(--accent); display: inline-block; transition: transform 0.3s ease;}
-        .hero h1 span:hover { transform: scale(1.05) rotate(-2deg); }
-        .hero h2 { animation-delay: 0.3s; font-size: 1.5rem; font-weight: 500; color: var(--text-muted); margin-bottom: 40px; word-break: keep-all; }
-        .hero p { animation-delay: 0.5s; max-width: 800px; margin: 0 auto; font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; word-break: keep-all; }
-        .hero p + p { animation-delay: 0.7s; }
+        .resume-header h1 {
+            font-size: 3rem;
+            margin: 0 0 10px 0;
+            color: var(--text-main);
+        }
+        .resume-header h1 span {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-left: 10px;
+        }
+        .resume-header h2 {
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin: 0 0 25px 0;
+            font-weight: 600;
+        }
+        .resume-contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+        .resume-contact span {
+            display: inline-flex;
+            align-items: center;
+        }
+        .resume-contact span strong {
+            color: var(--text-main);
+            margin-right: 8px;
+        }
 
-        @keyframes textFadeUp {
-            to { opacity: 1; transform: translateY(0); }
+        /* 이력서 개별 섹션 */
+        .resume-section {
+            background: var(--card-bg);
+            padding: 40px 50px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            margin-bottom: 40px;
+        }
+        .resume-section-title {
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin: 0 0 30px 0;
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+        }
+        .resume-section-title span {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .resume-section p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.85;
+            margin-bottom: 25px;
+            word-break: keep-all;
+        }
+        .resume-section p:last-child {
+            margin-bottom: 0;
+        }
+        .resume-section p strong {
+            color: var(--text-main);
+            font-weight: 600;
         }
 
-        /* Portfolio Section */
+        /* 학력/경력 타임라인 */
+        .timeline {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .timeline li {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 40px;
+        }
+        .timeline li:last-child {
+            margin-bottom: 0;
+        }
+        .timeline li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+            z-index: 2;
+        }
+        .timeline li::after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 25px;
+            bottom: -45px;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+        .timeline li:last-child::after {
+            display: none;
+        }
+        .timeline .date {
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: 5px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .timeline .content h4 {
+            font-size: 1.3rem;
+            color: var(--text-main);
+            margin: 0 0 8px 0;
+        }
+        .timeline .content p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Skills 그리드 */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        .skill-item {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .skill-item h4 {
+            color: var(--accent);
+            font-size: 1.15rem;
+            margin: 0 0 10px 0;
+        }
+        .skill-item p {
+            color: var(--text-main);
+            font-size: 1.05rem;
+            margin: 0;
+            line-height: 1.6;
+            word-break: keep-all;
+        }
+
+        /* ================= WORKS PAGE 공통 ================= */
         .portfolio {
             padding: 40px 20px 80px;
             max-width: 1200px;
@@ -132,7 +273,7 @@
         }
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 60px;
             position: relative;
         }
@@ -150,25 +291,105 @@
             width: 60px;
         }
 
-        /* Works 리스트 & 상세뷰 전환용 컨테이너 */
-        #works-list {
-            display: block;
-            animation: fadeIn 0.4s ease-out forwards;
+        /* 영상 임베드 레이아웃 (2x2 대칭 그리드) */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2열 고정 */
+            gap: 40px;
+            margin-top: 20px;
         }
-        #work-detail-view {
-            display: none;
-            padding: 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-            animation: fadeIn 0.4s ease-out forwards;
+        .video-item {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 비율 */
+            height: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .video-desc { padding: 0 5px; }
+        .video-desc h4 { color: var(--text-main); font-size: 1.25rem; margin: 0 0 8px 0; word-break: keep-all; }
+        .video-desc p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0; word-break: keep-all; }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        /* 게임 포트폴리오 (목록형) 확장 레이아웃 */
+        .game-showcase {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
         }
+        .game-item {
+            display: flex;
+            flex-direction: column;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            gap: 40px;
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        .game-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(129, 178, 154, 0.4);
+        }
+        .game-top {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        .game-top img {
+            flex: 0 0 40%;
+            max-width: 450px;
+            width: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        .game-text { flex: 1; }
+        .game-text h3 { font-size: 2rem; margin: 0 0 10px 0; color: var(--text-main); }
+        .game-text .role { color: var(--accent); font-size: 1.1rem; font-weight: 600; margin-bottom: 25px; display: inline-block; }
+        .game-text p { color: var(--text-muted); line-height: 1.8; font-size: 1.05rem; word-break: keep-all; margin: 0; }
 
-        .portfolio-grid, .portfolio-grid-game {
+        /* Wwise 스크린샷 및 설명 섹션 */
+        .wwise-section {
+            display: flex;
+            background: rgba(0, 0, 0, 0.25);
+            padding: 30px;
+            border-radius: 15px;
+            gap: 30px;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .wwise-section img {
+            flex: 0 0 45%;
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .wwise-text { flex: 1; }
+        .wwise-text h4 { color: var(--accent); font-size: 1.3rem; margin: 0 0 12px 0; }
+        .wwise-text p { color: var(--text-muted); line-height: 1.7; font-size: 1.05rem; margin: 0; word-break: keep-all; }
+
+        /* 영상 포트폴리오 (그리드형) 레이아웃 */
+        #works-list { display: block; animation: fadeIn 0.4s ease-out forwards; }
+        #work-detail-view { display: none; padding: 20px; max-width: 1100px; margin: 0 auto; animation: fadeIn 0.4s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .portfolio-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -183,19 +404,10 @@
             flex: 1 1 250px;
             max-width: 280px;
         }
-        .portfolio-grid-game .portfolio-card {
-            background-color: transparent;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex: 1 1 280px;
-            max-width: 320px;
-        }
-
-        /* 포트폴리오 아이템 (Hover Effect) */
-        .portfolio-item, .portfolio-item-game {
+        .portfolio-item {
             position: relative;
             width: 100%;
+            aspect-ratio: 2 / 3;
             border-radius: 12px;
             overflow: hidden;
             background-color: var(--card-bg);
@@ -208,321 +420,60 @@
             text-align: center;
             cursor: pointer;
         }
-        .portfolio-item { aspect-ratio: 2 / 3; }
-        .portfolio-item-game { aspect-ratio: 1 / 1; }
-
-        .portfolio-item img, .portfolio-item-game img {
+        .portfolio-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 10;
+            top: 0; left: 0; z-index: 10;
             transition: transform 0.5s ease;
         }
-        
-        .portfolio-item:hover img, .portfolio-item-game:hover img {
-            transform: scale(1.1);
-        }
-
-        .portfolio-placeholder {
-            z-index: 0;
-            padding: 20px;
-            font-size: 0.9rem;
-        }
-
+        .portfolio-item:hover img { transform: scale(1.1); }
+        .portfolio-placeholder { z-index: 0; padding: 20px; font-size: 0.9rem; }
         .portfolio-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(5px);
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 20;
-            padding: 20px;
-            box-sizing: border-box;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            opacity: 0; transition: opacity 0.3s ease; z-index: 20; padding: 20px; box-sizing: border-box;
         }
-        
-        .portfolio-item:hover, .portfolio-item-game:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(129, 178, 154, 0.8);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
-        }
-        .portfolio-item:hover .portfolio-overlay, .portfolio-item-game:hover .portfolio-overlay {
-            opacity: 1;
-        }
-        .overlay-title {
-            font-size: 1.3rem;
-            color: var(--text-main);
-            font-weight: 600;
-            margin-bottom: 8px;
-            transform: translateY(20px);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-align: center;
-            word-break: keep-all;
-        }
-        .overlay-role {
-            font-size: 0.95rem;
-            color: var(--accent);
-            transform: translateY(20px);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s;
-            text-align: center;
-        }
-        .portfolio-item:hover .overlay-title, .portfolio-item:hover .overlay-role,
-        .portfolio-item-game:hover .overlay-title, .portfolio-item-game:hover .overlay-role {
-            transform: translateY(0);
-        }
+        .portfolio-item:hover { transform: translateY(-8px) scale(1.02); border-color: rgba(129, 178, 154, 0.8); box-shadow: 0 15px 30px rgba(0,0,0,0.6); }
+        .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+        .overlay-title { font-size: 1.3rem; color: var(--text-main); font-weight: 600; margin-bottom: 8px; transform: translateY(20px); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-align: center; word-break: keep-all; }
+        .overlay-role { font-size: 0.95rem; color: var(--accent); transform: translateY(20px); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s; text-align: center; }
+        .portfolio-item:hover .overlay-title, .portfolio-item:hover .overlay-role { transform: translateY(0); }
 
-        /* --- 상세 페이지 (Detail View) 스타일 개선 (가로 배치) --- */
-        .btn-back {
-            background: transparent;
-            color: var(--text-muted);
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 10px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-family: inherit;
-            margin-bottom: 30px;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .btn-back:hover {
-            background: var(--text-main);
-            color: var(--bg-color);
-            border-color: var(--text-main);
-        }
-        
-        /* 세로(column)에서 가로(row)로 변경 */
-        .detail-content {
-            display: flex;
-            flex-direction: row; 
-            align-items: flex-start; /* 위쪽 정렬 */
-            gap: 50px; /* 사진과 텍스트 사이 간격 */
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 50px;
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        /* 사진 영역을 35%로 설정, 비율을 그대로 유지 */
-        .detail-media {
-            flex: 0 0 35%; 
-            max-width: 400px; /* 최대 너비 제한 */
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-        }
-        .detail-media img {
-            width: 100%;
-            height: auto; /* 원본 비율 유지, 잘리지 않음 */
-            display: block;
-            border-radius: 12px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5); /* 사진에 입체감 추가 */
-        }
-
-        /* 텍스트 영역이 남은 공간을 모두 차지하도록 설정 */
-        .detail-text {
-            flex: 1;
-        }
-        .detail-text h2 {
-            font-size: 2.2rem;
-            margin: 0 0 10px 0;
-            color: var(--text-main);
-        }
-        .detail-text .role {
-            font-size: 1.2rem;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 30px;
-            display: inline-block;
-        }
-        .detail-text p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            line-height: 1.8;
-            margin-bottom: 20px;
-            word-break: keep-all;
-        }
-
-        /* Skills Section (About) */
-        .skills {
-            padding: 40px 20px 100px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .skills-wrapper {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            width: 100%;
-            flex-wrap: wrap;
-        }
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 40px 30px;
-            border: 1px solid rgba(255,255,255,0.05);
-            flex: 1 1 300px;
-            max-width: 380px; 
-            box-sizing: border-box;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
-            box-shadow: -10px 15px 30px rgba(0, 0, 0, 0.4);
-            border-color: rgba(129, 178, 154, 0.5);
-        }
-        .icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            display: inline-block;
-            transition: transform 0.3s ease;
-        }
-        .card:hover .icon {
-            animation: float 2s ease-in-out infinite;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        .card h3 {
-            font-size: 1.5rem;
-            margin: 0 0 10px 0;
-            color: var(--text-main);
-        }
-        .card .subtitle {
-            color: var(--accent);
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin-bottom: 25px;
-            display: block;
-        }
-        .card p {
-            color: var(--text-muted);
-            margin: 0;
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-        .card p strong {
-            color: var(--text-main);
-            font-weight: 600;
-        }
-
-        /* CTA Section (Contact) */
-        #page-contact {
-            display: none;
-        }
-        #page-contact.active {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .cta {
-            text-align: center;
-            padding: 100px 20px;
-            background-color: var(--card-bg);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 20px;
-            max-width: 800px;
-            width: 90%;
-            margin: 40px auto;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            position: relative;
-            overflow: hidden;
-        }
-        .cta::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(129, 178, 154, 0.05) 0%, transparent 70%);
-            animation: pulseBg 10s linear infinite;
-            z-index: 0;
-        }
-        @keyframes pulseBg {
-            0% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.2) rotate(180deg); }
-            100% { transform: scale(1) rotate(360deg); }
-        }
-        .cta > * {
-            position: relative;
-            z-index: 1;
-        }
-        .cta h2 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            word-break: keep-all;
-        }
-        .cta p {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            max-width: 700px;
-            margin: 0 auto 50px auto;
-            word-break: keep-all;
-        }
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            color: var(--text-muted);
-        }
-        .contact-item {
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--bg-color);
-            padding: 15px 25px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-        .contact-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            border-color: var(--accent);
-        }
-        .contact-item strong {
-            color: var(--accent);
-        }
+        /* 영상 포트폴리오 상세 뷰 */
+        .btn-back { background: transparent; color: var(--text-muted); border: 1px solid rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 30px; cursor: pointer; font-size: 1rem; font-family: inherit; margin-bottom: 30px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-back:hover { background: var(--text-main); color: var(--bg-color); border-color: var(--text-main); }
+        .detail-content { display: flex; flex-direction: row; align-items: flex-start; gap: 50px; background: var(--card-bg); border-radius: 20px; padding: 50px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .detail-media { flex: 0 0 35%; max-width: 400px; display: flex; justify-content: center; align-items: flex-start; }
+        .detail-media img { width: 100%; height: auto; display: block; border-radius: 12px; box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
+        .detail-text { flex: 1; }
+        .detail-text h2 { font-size: 2.2rem; margin: 0 0 10px 0; color: var(--text-main); }
+        .detail-text .role { font-size: 1.2rem; color: var(--accent); font-weight: 600; margin-bottom: 30px; display: inline-block; }
+        .detail-text p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 20px; word-break: keep-all; }
 
         /* 모바일 반응형 처리 */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero h2 { font-size: 1.2rem; }
-            .section-title { font-size: 2rem; }
-            .contact-info { flex-direction: column; align-items: center; gap: 20px; }
-            .contact-item { width: 100%; box-sizing: border-box; justify-content: center; }
+            .resume-header h1 { font-size: 2.2rem; }
+            .resume-section { padding: 30px 25px; }
+            .resume-section-title { font-size: 1.5rem; flex-direction: column; gap: 5px; }
             
-            /* 모바일에서는 다시 사진 위, 설명 아래로 배치 */
-            .detail-content { 
-                flex-direction: column;
-                padding: 30px; 
-                gap: 30px;
-            }
-            .detail-media {
-                max-width: 100%;
-                width: 100%;
-            }
+            .section-title { font-size: 1.8rem; }
+            
+            /* 모바일에서 비메오 영상을 1열로 변경 */
+            .video-grid { grid-template-columns: 1fr; }
+
+            /* 게임 아이템 반응형 */
+            .game-item { padding: 25px; gap: 30px; }
+            .game-top { flex-direction: column; gap: 20px; }
+            .game-top img { max-width: 100%; }
+            .wwise-section { flex-direction: column; padding: 20px; gap: 20px; }
+            .wwise-section img { max-width: 100%; }
+            
+            .detail-content { flex-direction: column; padding: 30px; gap: 30px; }
+            .detail-media { max-width: 100%; width: 100%; }
             .detail-text h2 { font-size: 1.8rem; }
         }
     </style>
@@ -533,44 +484,72 @@
     <nav id="navbar">
         <a onclick="switchPage('page-about', this)" class="active">About</a>
         <a onclick="switchPage('page-works', this)">Works</a>
-        <a onclick="switchPage('page-contact', this)">Contact</a>
     </nav>
 
-    <!-- ==================== ABOUT PAGE ==================== -->
+    <!-- ==================== ABOUT PAGE (Resume/CV Format) ==================== -->
     <div id="page-about" class="page active">
-        <header class="hero">
-            <h1>안녕하세요, <span>노승준입니다.</span></h1>
-            <h2>영화/애니메이션/게임 사운드 디자이너</h2>
-            <p>매체의 의도가 관객에게 전달될 수 있도록 돕습니다. </p>
-            <p>각 플랫폼에 최적화 된 사운드 경험을 줄 수 있도록 노력합니다.</p>
-        </header>
-
-        <section class="skills">
-            <h2 class="section-title">Technical Skills</h2>
+        <div class="resume-container">
             
-            <div class="skills-wrapper">
-                <div class="card animate-on-scroll">
-                    <span class="icon">⚡</span>
-                    <h3>Optimized Workflow</h3>
-                    <span class="subtitle">Pro Tools & Soundminer</span>
-                    <p>방대한 사운드 라이브러리를 <strong>Soundminer</strong>에 인덱싱하여 원하는 소리를 즉각적으로 탐색하고 배치하는 최적화된 워크플로우를 구축했습니다. <strong>Pro Tools</strong> 환경에서 빠르고 정확한 사운드 에디팅 및 믹싱을 수행합니다.</p>
+            <!-- 1. 프로필 헤더 -->
+            <header class="resume-header animate-on-scroll">
+                <h1>노승준 <span>Roh Seung Jun</span></h1>
+                <div class="resume-contact">
+                    <span><strong>Email</strong> shtmdwns03@gmail.com</span>
+                    <span><strong>Phone</strong> 010-6636-6034</span>
                 </div>
+            </header>
 
-                <div class="card animate-on-scroll">
-                    <span class="icon">🪄</span>
-                    <h3>Advanced Sound Design</h3>
-                    <span class="subtitle">Plugins</span>
-                    <p><strong>Fabfilter, Kilohearts, Soundtoys, iZotope</strong> 등 업계 표준 플러그인을 적극 활용합니다. 단순한 이펙팅을 넘어 텍스처와 공간감이 살아있는 독창적이고 섬세한 사운드 디자인을 구현합니다.</p>
-                </div>
+            <!-- 2. 자기소개 -->
+            <section class="resume-section animate-on-scroll">
+                <h3 class="resume-section-title">자기소개 <span>Profile</span></h3>
+                <p>어린 시절 게임이라는 걸 처음 접한 닌텐도로 커비, 포켓몬스터, 마리오, 젤다 같은 게임을 플레이하던 때 부터 제 귀를 사로잡은 것은 화려한 그래픽보다 <strong>아이코닉한 소리</strong>였습니다. 휴대용 게임기라는 기술적 한계로 엄청난 퀄리티를 가진 사운드는 아니었지만 효과 하나하나에 적용된 직관적이고 특징적인 효과음들은 수년이 지난 지금까지도 기억에 선명하게 남아있습니다.</p>
+                <p>이 경험은 제게 <strong>좋은 게임 사운드란 단순히 음질이 뛰어난 것을 넘어, 게임의 정체성을 부여하고 유저의 기억에 강렬하게 각인되는 것</strong>이라는 사실을 깨닫게 해주었습니다. 이후 대학에서 음향을 전공하며 기본적인 음향 지식과 Pro Tools 를 활용한 영상 매체의 Post Production 과정을 깊이 있게 탐구하며 사운드 디자이너로서의 기초를 탄탄히 다졌습니다.</p>
+            </section>
 
-                <div class="card animate-on-scroll">
-                    <span class="icon">🎮</span>
-                    <h3>Game Audio Integration</h3>
-                    <span class="subtitle">Audiokinetic Wwise</span>
-                    <p><strong>Wwise</strong>를 이용한 게임 사운드 미들웨어 인테그레이션 게임 엔진 연동을 통해 플레이어의 행동과 환경 변화에 반응하는 다이내믹하고 인터랙티브한 오디오 시스템을 설계 및 적용합니다.</p>
+            <!-- 3. 핵심 역량 / 기술 -->
+            <section class="resume-section animate-on-scroll">
+                <h3 class="resume-section-title">핵심 역량 및 기술 <span>Skills & Tools</span></h3>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <h4>Middleware</h4>
+                        <p>Audiokinetic Wwise를 활용한 사운드 적용 (Wwise 101 취득)</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>DAW & Asset Management</h4>
+                        <p>Pro Tools를 기반으로 한 믹싱/에디팅 및 Soundminer를 활용한 라이브러리 워크플로우</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>Plugins & Sound Design</h4>
+                        <p>Fabfilter, Kilohearts, Soundtoys, iZotope 등 플러그인을 활용한 사운드 디자인</p>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <!-- 4. 학력 및 교육 -->
+            <section class="resume-section animate-on-scroll">
+                <h3 class="resume-section-title">학력 <span>Education</span></h3>
+                <ul class="timeline">
+                    <li>
+                        <div class="date">2022.03 ~</div>
+                        <div class="content">
+                            <h4>동아방송예술대학교</h4>
+                            <p>음향제작과 졸업 예정</p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 5. 입사 동기 및 포부 -->
+            <section class="resume-section animate-on-scroll">
+                <h3 class="resume-section-title">입사 동기 및 포부 <span>Motivation & Aspirations</span></h3>
+                <p><strong>입사 동기</strong></p>
+                <p>월드 오브 워크래프트, 로스트아크와 같은 MMORPG를 열심히 플레이하며 게임 사운드가 지닌 <strong>타격감과 상호작용의 힘</strong>에 완전히 매료되었습니다. 플레이어의 스킬에 맞춰 나오는 피드백과 디테일을 살려주는 여러 소리에서 영화나 드라마같은 영상 매체와는 다른 차원의 재미를 받았습니다.</p>
+                <p>학교를 다니며 Post Production 이라는 음향 후반 전공동아리 팀장직을 맡고, 특별한 인연으로 넷플릭스 오리지널 시리즈 '들쥐', 단편 영화 '종이집' 등의 영화 프로젝트를 거치며 에디팅과 믹싱으로 작품의 연출 의도를 살리는 역량을 키워왔습니다. 하지만 언젠가 제가 좋아했던 게임의 소리를 만들어 보고 싶다는 생각이 항상 들어왔습니다.</p>
+                <p>군 전역 후 지인의 소개로 전국 대학생 연합 게임 개발 동아리인 BRIDGE에 가입하여 실제로 게임 개발에 참여 해보며 말할 수 없는 재미를 느꼈고 내가 좋아하는게 직업이 되는 꿈을 다시 꾸기 시작했습니다.</p>
+                <p>입사 후 단순히 총 소리, 칼 소리를 만드는 것에 만족하지 않겠습니다. 기획 의도를 이해하고 이를 게임 내에서 가장 재미있게 구현해 내는 사운드 디자이너가 되고 싶습니다.</p>
+            </section>
+
+        </div>
     </div>
 
     <!-- ==================== WORKS PAGE ==================== -->
@@ -578,13 +557,96 @@
         
         <!-- 작품 목록 뷰 -->
         <div id="works-list">
+
+            <!-- 1. Vimeo 임베드 섹션 -->
             <section class="portfolio">
-                <h2 class="section-title">영상 포트폴리오</h2>
+                <h2 class="section-title">Sound Re Design</h2>
+                <div class="video-grid">
+                    
+                    <!-- 비메오 영상 1 -->
+                    <div class="video-item animate-on-scroll">
+                        <div class="video-wrapper">
+                            <iframe src="https://player.vimeo.com/video/1221999552" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Vimeo video player"></iframe>
+                        </div>
+                        <div class="video-desc">
+                            <h4>[사운드 리디자인] 데빌 메이 크라이5</h4>
+                            <p>검술,격투 두 스킬의 캐릭터성을 구분하여 각각 다른 재미를 주려고 하였습니다. 특히 단순한 공격이 아닌 사이버틱한 에너지류의 소리와 실제적인 소리를 결합하는데에 집중했습니다.</p>
+                        </div>
+                    </div>
+
+                    <!-- 비메오 영상 2 -->
+                    <div class="video-item animate-on-scroll">
+                        <div class="video-wrapper">
+                            <iframe src="https://player.vimeo.com/video/1221999550" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Vimeo video player"></iframe>
+                        </div>
+                        <div class="video-desc">
+                            <h4>[사운드 리디자인] 클레르 옵스퀴르: 33 원정대</h4>
+                            <p>UI와 전투 사운드가 동일한 게임에서 나오는 소리처럼 들리게 하고, 각 공격간의 재미있는 특징들을 살려주도록 하였습니다. 특히 스킬 차징/공격간 나오는 QTE가 뭍히지 않고 찰지게 들리는데에 집중했습니다.</p>
+                        </div>
+                    </div>
+
+                    <!-- 비메오 영상 3 -->
+                    <div class="video-item animate-on-scroll">
+                        <div class="video-wrapper">
+                            <iframe src="https://player.vimeo.com/video/1221999551" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Vimeo video player"></iframe>
+                        </div>
+                        <div class="video-desc">
+                            <h4>[사운드 리디자인] 호라이즌 포비든 웨스트</h4>
+                            <p>시네마틱 트레일러의 여러 장면들과 전환을 재미있게 표현하려 했습니다. 플레이어와 적 크리쳐간의 이동과 거리에 따른 패닝/감쇠에 집중했고 빠르게 지나가는 장면들에 몰입감을 주는데 노력했습니다.</p>
+                        </div>
+                    </div>
+
+                    <!-- 비메오 영상 4 -->
+                    <div class="video-item animate-on-scroll">
+                        <div class="video-wrapper">
+                            <iframe src="https://player.vimeo.com/video/1221999549" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Vimeo video player"></iframe>
+                        </div>
+                        <div class="video-desc">
+                            <h4>[사운드 리디자인] 유희왕 마스터듀얼</h4>
+                            <p>네온 그래픽에 맞는 Sci-fi한 느낌의 UI톤으로 통일하려 노력했고 뽑기 자체가 중요한 컨텐츠인 게임인 만큼 각 등급별 카드의 소리에 차등을 두어 재미있게 만들어 보려 했습니다.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- 2. 게임 포트폴리오 섹션 -->
+            <section class="portfolio" style="padding-top: 0;">
+                <h2 class="section-title">Game Portfolio</h2>
+                <div class="game-showcase">
+                    
+                    <div class="game-item animate-on-scroll">
+                        <div class="game-top">
+                            <img src="WTTR_thumbnail_banner.png" alt="Way To The Rose">
+                            <div class="game-text">
+                                <h3>[Indie Game] Way To The Rose</h3>
+                                <span class="role">Sound Design</span>
+                                <p>아직 출시는 하지 못했지만 게임 개발 동아리 BRIDGE 에서 개발중인 인디 게임 'Way To The Rose'의 전체 사운드 디자인과 Wwise 엔진 연동을 담당하고 있습니다.<br><br>
+                                뱀파이어 서바이벌류의 특징인 각각의 개성 있는 아이템 사운드와 맵에 등장하는 몬스터, UI 사운드 디자인을 진행했습니다. 올 해 일산 킨텍스에서 개최된 2026 PlayX4 인디씨드 부문에서 전시 후 유저들의 피드백을 보고 게임을 바라보는 여러 시선들에 대해 배웠습니다. </p>
+                            </div>
+                        </div>
+
+                        <!-- Wwise 스크린샷 및 설명 영역 -->
+                        <div class="wwise-section">
+                            <img src="wwtr_wwise.png" alt="Wwise">
+                            <div class="wwise-text">
+                                <h4>Wwise Implementation</h4>
+                                <p>Wwise를 도입하여 기획자와 프로그래머와의 소통하는 법을 연습하고 사운드 관련 작업을 분리 시키는 시도를 해보았습니다. 모든 기능을 완벽하게 사용한 것은 아니지만 랜더마이징,컨테이너,RTPC 같은 기능들을 사용해서 일일이 수작업으로 하는 것 보단 효율적으로 소리의 변화를 적용하려 했습니다. </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- 3. 영상 포트폴리오 섹션 -->
+            <section class="portfolio" style="padding-top: 0;">
+                <h2 class="section-title">Other Portfolio</h2>
                 <div class="portfolio-grid">
                     
-                   <!-- <div class="portfolio-card animate-on-scroll">
+                    <div class="portfolio-card animate-on-scroll">
                         <div class="portfolio-item" onclick="openWorkDetail('mousetrap')">
-                            <img src="mousetrap.jpg" alt="작업물 포스터 1"> 
+                            <img src="mousetrap.jpg" alt="들쥐"> 
                             <div class="portfolio-placeholder">이미지 1<br>(2:3 비율 추천)</div>
                             <div class="portfolio-overlay">
                                 <div class="overlay-title">[Netflix] 들쥐</div>
@@ -592,11 +654,10 @@
                             </div>
                         </div>
                     </div>
-                    -->
 
                     <div class="portfolio-card animate-on-scroll">
                         <div class="portfolio-item" onclick="openWorkDetail('paperhouse')">
-                            <img src="paperhouse.jpg" alt="작업물 포스터 2">
+                            <img src="paperhouse.jpg" alt="종이집">
                             <div class="portfolio-placeholder">이미지 2<br>(2:3 비율 추천)</div>
                             <div class="portfolio-overlay">
                                 <div class="overlay-title">[Short Film] 종이집</div>
@@ -607,7 +668,7 @@
 
                     <div class="portfolio-card animate-on-scroll">
                         <div class="portfolio-item" onclick="openWorkDetail('kill')">
-                            <img src="kill.jpg" alt="작업물 포스터 3">
+                            <img src="kill.jpg" alt="킬">
                             <div class="portfolio-placeholder">이미지 3<br>(2:3 비율 추천)</div>
                             <div class="portfolio-overlay">
                                 <div class="overlay-title">[Short Film] 킬</div>
@@ -618,54 +679,26 @@
 
                      <div class="portfolio-card animate-on-scroll">
                         <div class="portfolio-item" onclick="openWorkDetail('gosari')">
-                            <img src="gosari.jpg" alt="작업물 포스터 4"> 
+                            <img src="gosari.jpg" alt="고자리"> 
                             <div class="portfolio-placeholder">이미지 4<br>(2:3 비율 추천)</div>
                             <div class="portfolio-overlay">
-                                <div class="overlay-title">[AI Short Film] The Gosari Monsoon</div>
+                                <div class="overlay-title">[AI Short Film]<br>The Gosari Monsoon</div>
                                 <div class="overlay-role">Mixing / Sound Design</div>
                             </div>
                         </div>
                     </div>
 
-                     <div class="portfolio-card animate-on-scroll">
-                        <div class="portfolio-item" onclick="openWorkDetail('pohwan')">
-                            <img src="pohwan.jpg" alt="작업물 포스터 4"> 
-                            <div class="portfolio-placeholder">이미지 4<br>(2:3 비율 추천)</div>
-                            <div class="portfolio-overlay">
-                                <div class="overlay-title">[Short Film] 포환을 든 아이</div>
-                                <div class="overlay-role">Location Sound</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="portfolio" style="padding-top: 0;">
-                <h2 class="section-title">게임 포트폴리오</h2>
-                <div class="portfolio-grid-game">
-                    
-                    <div class="portfolio-card animate-on-scroll">
-                        <div class="portfolio-item-game" onclick="openWorkDetail('wttr')">
-                            <img src="WTTR_thumbnail_banner.png" alt="게임 작업물 1">
-                            <div class="portfolio-placeholder">게임 이미지 1<br>(1:1 비율 추천)</div>
-                            <div class="portfolio-overlay">
-                                <div class="overlay-title">[Indie Game] Way To The Rose</div>
-                                <div class="overlay-role">Sound Design / Wwise</div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </section>
         </div>
 
-        <!-- 작품 상세 뷰 (초기에는 숨겨짐) -->
+        <!-- 영상 포트폴리오 상세 뷰 -->
         <div id="work-detail-view">
             <button class="btn-back" onclick="closeWorkDetail()">
                 ← 목록으로 돌아가기
             </button>
             <div class="detail-content">
                 <div class="detail-media">
-                    <!-- 자바스크립트를 통해 이미지가 여기에 삽입됩니다 -->
                     <img id="detail-img" src="" alt="상세 이미지">
                 </div>
                 <div class="detail-text">
@@ -678,28 +711,8 @@
 
     </div>
 
-    <!-- ==================== CONTACT PAGE ==================== -->
-    <div id="page-contact" class="page">
-       <!-- <section class="cta">
-            <h2>어떤 사운드가 필요하신가요?</h2>
-            <p>기획부터 마무리까지 최선을 다하겠습니다</p>
-        -->
-            
-            <div class="contact-info">
-                <div class="contact-item">
-                    <strong>Email</strong> 
-                    <span>shtmdwns03@gmail.com</span>
-                </div>
-                <div class="contact-item">
-                    <strong>Phone</strong> 
-                    <span>010-6636-6034</span>
-                </div>
-            </div>
-        </section>
-    </div>
-
     <script>
-        // --- 1. 포트폴리오 상세 데이터 모음 ---
+        // --- 1. 영상 포트폴리오 상세 데이터 ---
         const workData = {
             'mousetrap': {
                 title: '[Netflix] 들쥐',
@@ -713,7 +726,7 @@
                 role: 'Mixing / ADR',
                 imgSrc: 'paperhouse.jpg',
                 desc: `단편 영화 '종이집'의 전체 믹싱 및 후시녹음(ADR)을 진행했습니다.<br><br>
-                       열악했던 현장 녹음의 노이즈를 iZotope RX를 활용해 말끔히 복원 및 제거하고, 배우들의 감정선이 돋보일 수 있도록 대사 믹싱에 가장 큰 공을 들인 프로젝트입니다.<br><br>
+                       열악했던 동시 녹음을 iZotope RX를 활용해 정리하고 배우들의 감정선이 돋보일 수 있도록 대사 믹싱에 가장 큰 공을 들인 프로젝트입니다.<br><br>
                        - 2026 원주옥상영화제<br>
                        - 🏆 2026 목포국도1호선독립영화제 작품상`
             },
@@ -731,28 +744,12 @@
                 role: 'Mixing / Sound Design',
                 imgSrc: 'gosari.jpg',
                 desc: `공포 단편 영화 'The Gosari Monsoon'의 효과음 디자인과 믹싱을 담당했습니다.<br><br>
-                       장면의 전환과 분위기를 표현하고 점프 스퀘어 등 공포적인 분위기를 조성하는데에 충실했습니다.<br><br>
+                       장면의 전환과 분위기를 표현하고 점프 스퀘어 장면 등 공포적인 분위기를 조성하는데에 충실했습니다.<br><br>
                        - 2026 10th ​Toronto International Nollywood Film Festival`
-            },
-            'pohwan': {
-                title: '[Short Film] 포환을 든 아이',
-                role: ':Location Sound',
-                imgSrc: 'pohwan.jpg',
-                desc: `단편 영화 [포환을 든 아이] 동시녹음 및 붐 오퍼레이터.<br><br>
-                       - 2026 인천여성영화제<br>
-                       - 2026 서울국제어린이영화제<br>
-                       - 2026 대전꿈돌이영화제`
-            },
-            'wttr': {
-                title: '[Indie Game] Way To The Rose',
-                role: 'Sound Design / Wwise',
-                imgSrc: 'WTTR_thumbnail_banner.png',
-                desc: `인디 게임 'Way To The Rose'의 전체 사운드 디자인과 Wwise 엔진 연동을 담당했습니다.<br><br>
-                       뱀파이어 서바이벌류의 특징인 각각의 개성있는 아이템과 맵에 등장하는 몬스터/UI 사운드 디자인과 플레이어의 상태에 따라 동적으로 변화하도록 인터랙티브 사운드 시스템을 기획 및 구현했습니다.`
             }
         };
 
-        // --- 2. 상세 페이지 열기 / 닫기 함수 ---
+        // --- 2. 영상 상세 페이지 열기 / 닫기 함수 ---
         function openWorkDetail(projectId) {
             const data = workData[projectId];
             if(!data) return;
@@ -788,7 +785,7 @@
             }
         });
 
-        // --- Intersection Observer 설정 ---
+        // --- Intersection Observer 설정 (스크롤 애니메이션) ---
         const observerOptions = {
             root: null,
             rootMargin: '0px',
@@ -816,7 +813,7 @@
 
         document.addEventListener("DOMContentLoaded", setupObserver);
 
-        // --- 페이지 전환 스크립트 ---
+        // --- 탭 페이지 전환 스크립트 ---
         function switchPage(pageId, navElement) {
             if(pageId !== 'page-works') {
                 document.getElementById('work-detail-view').style.display = 'none';
