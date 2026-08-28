@@ -294,7 +294,7 @@
         /* 영상 임베드 레이아웃 (2x2 대칭 그리드) */
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2열 고정 */
+            grid-template-columns: repeat(2, 1fr);
             gap: 40px;
             margin-top: 20px;
         }
@@ -364,23 +364,26 @@
         .game-text .role { color: var(--accent); font-size: 1.1rem; font-weight: 600; margin-bottom: 25px; display: inline-block; }
         .game-text p { color: var(--text-muted); line-height: 1.8; font-size: 1.05rem; word-break: keep-all; margin: 0; }
 
-        /* Wwise 스크린샷 및 설명 섹션 */
+        /* Wwise 스크린샷 및 설명 섹션 (세로 배치로 변경) */
         .wwise-section {
             display: flex;
+            flex-direction: column; /* 가로에서 세로 배치로 변경 */
             background: rgba(0, 0, 0, 0.25);
             padding: 30px;
             border-radius: 15px;
-            gap: 30px;
-            align-items: center;
+            gap: 20px;
             border: 1px solid rgba(255, 255, 255, 0.03);
         }
         .wwise-section img {
-            flex: 0 0 45%;
             width: 100%;
+            height: auto;
             border-radius: 8px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            object-fit: contain;
         }
-        .wwise-text { flex: 1; }
+        .wwise-text { 
+            width: 100%; 
+        }
         .wwise-text h4 { color: var(--accent); font-size: 1.3rem; margin: 0 0 12px 0; }
         .wwise-text p { color: var(--text-muted); line-height: 1.7; font-size: 1.05rem; margin: 0; word-break: keep-all; }
 
@@ -469,8 +472,7 @@
             .game-item { padding: 25px; gap: 30px; }
             .game-top { flex-direction: column; gap: 20px; }
             .game-top img { max-width: 100%; }
-            .wwise-section { flex-direction: column; padding: 20px; gap: 20px; }
-            .wwise-section img { max-width: 100%; }
+            .wwise-section { padding: 20px; gap: 20px; }
             
             .detail-content { flex-direction: column; padding: 30px; gap: 30px; }
             .detail-media { max-width: 100%; width: 100%; }
@@ -544,7 +546,7 @@
                 <h3 class="resume-section-title">입사 동기 및 포부 <span>Motivation & Aspirations</span></h3>
                 <p><strong>입사 동기</strong></p>
                 <p>월드 오브 워크래프트, 로스트아크와 같은 MMORPG를 열심히 플레이하며 게임 사운드가 지닌 <strong>타격감과 상호작용의 힘</strong>에 완전히 매료되었습니다. 플레이어의 스킬에 맞춰 나오는 피드백과 디테일을 살려주는 여러 소리에서 영화나 드라마같은 영상 매체와는 다른 차원의 재미를 받았습니다.</p>
-                <p>학교를 다니며 Post Production 이라는 음향 후반 전공동아리 팀장직을 맡고, 특별한 인연으로 넷플릭스 오리지널 시리즈 '들쥐', 단편 영화 '종이집' 등의 영화 프로젝트를 거치며 에디팅과 믹싱으로 작품의 연출 의도를 살리는 역량을 키워왔습니다. 하지만 언젠가 제가 좋아했던 게임의 소리를 만들어 보고 싶다는 생각이 항상 들어왔습니다.</p>
+                <p>학교를 다니며 Post Production 이라는 음향 후반 전공동아리 팀장직을 맡고, 특별한 인연으로 넷플릭스 오리지널 시리즈 '들쥐', 단편 영화 '종이집' 등의 영화 프로젝트를 거치며 에디팅과 믹싱으로 작품의 연출 의도를 살리는 역량을 키워왔습니다[cite: 3]. 하지만 언젠가 제가 좋아했던 게임의 소리를 만들어 보고 싶다는 생각이 항상 들어왔습니다.</p>
                 <p>군 전역 후 지인의 소개로 전국 대학생 연합 게임 개발 동아리인 BRIDGE에 가입하여 실제로 게임 개발에 참여 해보며 말할 수 없는 재미를 느꼈고 내가 좋아하는게 직업이 되는 꿈을 다시 꾸기 시작했습니다.</p>
                 <p>입사 후 단순히 총 소리, 칼 소리를 만드는 것에 만족하지 않겠습니다. 기획 의도를 이해하고 이를 게임 내에서 가장 재미있게 구현해 내는 사운드 디자이너가 되고 싶습니다.</p>
             </section>
