@@ -87,19 +87,12 @@
             width: 100%;
         }
 
-        /* SPA Page Container */
-        .page {
-            display: none;
+        /* 한 페이지 섹션 (About / Works) */
+        .page, #other-portfolio {
+            scroll-margin-top: 60px; /* 고정 네비게이션에 가려지지 않도록 */
+        }
+        #page-about {
             padding-top: 70px;
-            min-height: calc(100vh - 70px);
-        }
-        .page.active {
-            display: block;
-            animation: pageFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        @keyframes pageFadeIn {
-            0% { opacity: 0; transform: translateY(20px) scale(0.98); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         /* ================= ABOUT PAGE (이력서/CV 스타일) ================= */
@@ -280,15 +273,11 @@
         .section-title::after {
             content: '';
             display: block;
-            width: 0px;
+            width: 60px;
             height: 4px;
             background-color: var(--accent);
             margin: 20px auto 0;
             border-radius: 2px;
-            transition: width 0.8s ease-out;
-        }
-        .page.active .section-title::after {
-            width: 60px;
         }
 
         /* 영상 임베드 레이아웃 (2x2 대칭 그리드) */
@@ -344,7 +333,7 @@
         }
         .game-item:hover {
             transform: translateY(-5px);
-            border-color: rgba(129, 178, 154, 0.4);
+            border-color: rgba(245, 158, 11, 0.4);
         }
         .game-top {
             display: flex;
@@ -440,7 +429,7 @@
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             opacity: 0; transition: opacity 0.3s ease; z-index: 20; padding: 20px; box-sizing: border-box;
         }
-        .portfolio-item:hover { transform: translateY(-8px) scale(1.02); border-color: rgba(129, 178, 154, 0.8); box-shadow: 0 15px 30px rgba(0,0,0,0.6); }
+        .portfolio-item:hover { transform: translateY(-8px) scale(1.02); border-color: var(--accent); box-shadow: 0 15px 30px rgba(0,0,0,0.6); }
         .portfolio-item:hover .portfolio-overlay { opacity: 1; }
         .overlay-title { font-size: 1.3rem; color: var(--text-main); font-weight: 600; margin-bottom: 8px; transform: translateY(20px); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-align: center; word-break: keep-all; }
         .overlay-role { font-size: 0.95rem; color: var(--accent); transform: translateY(20px); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s; text-align: center; }
@@ -484,12 +473,12 @@
 
     <!-- Navigation Bar -->
     <nav id="navbar">
-        <a onclick="switchPage('page-about', this)" class="active">About</a>
-        <a onclick="switchPage('page-works', this)">Works</a>
+        <a href="#page-about" onclick="scrollToSection(event, 'page-about')" class="active">About</a>
+        <a href="#page-works" onclick="scrollToSection(event, 'page-works')">Works</a>
     </nav>
 
     <!-- ==================== ABOUT PAGE (Resume/CV Format) ==================== -->
-    <div id="page-about" class="page active">
+    <div id="page-about" class="page">
         <div class="resume-container">
             
             <!-- 1. 프로필 헤더 -->
@@ -623,7 +612,7 @@
                     
                     <div class="game-item animate-on-scroll">
                         <div class="game-top">
-                            <img src="WTTR_thumbnail_banner.png" alt="Way To The Rose">
+                            <img src="WTTR_thumbnail_banner.jpg" alt="Way To The Rose">
                             <div class="game-text">
                                 <h3>[Indie Game] Way To The Rose</h3>
                                 <span class="role">Sound Design</span>
@@ -646,7 +635,7 @@
             </section>
 
             <!-- 3. 영상 포트폴리오 섹션 -->
-            <section class="portfolio" style="padding-top: 0;">
+            <section id="other-portfolio" class="portfolio" style="padding-top: 0;">
                 <h2 class="section-title">Other Portfolio</h2>
                 <div class="portfolio-grid">
                     
@@ -685,7 +674,7 @@
 
                      <div class="portfolio-card animate-on-scroll">
                         <div class="portfolio-item" onclick="openWorkDetail('gosari')">
-                            <img src="gosari.jpg" alt="고자리"> 
+                            <img src="gosari.jpg" alt="고사리"> 
                             <div class="portfolio-placeholder">이미지 4<br>(2:3 비율 추천)</div>
                             <div class="portfolio-overlay">
                                 <div class="overlay-title">[AI Short Film]<br>The Gosari Monsoon</div>
@@ -743,7 +732,7 @@
                 desc: `액션 단편 영화 '킬'의 타격감 있는 효과음을 디자인했습니다.<br><br>
                        무기 및 격투 씬과 트랜지션 사운드를 과장되면서도 사실적으로 연출하여, 시각적인 액션의 쾌감을 청각적으로 증가시키는 데 중점을 두었습니다.<br><br>
                        - 2026 미쟝센단편영화제<br>
-                       - 넷플릭스 기간제 상영<br>`
+                       - 넷플릭스 기간제 상영`
             },
             'gosari': {
                 title: '[AI Short Film] The Gosari Monsoon',
@@ -751,7 +740,7 @@
                 imgSrc: 'gosari.jpg',
                 desc: `공포 단편 영화 'The Gosari Monsoon'의 효과음 디자인과 믹싱을 담당했습니다.<br><br>
                        장면의 전환과 분위기를 표현하고 점프 스퀘어 장면 등 공포적인 분위기를 조성하는데에 충실했습니다.<br><br>
-                       - 2026 10th ​Toronto International Nollywood Film Festival`
+                       - 2026 10th Toronto International Nollywood Film Festival`
             }
         };
 
@@ -767,21 +756,35 @@
             const imgEl = document.getElementById('detail-img');
             imgEl.src = data.imgSrc;
             
+            document.getElementById('page-about').style.display = 'none';
             document.getElementById('works-list').style.display = 'none';
             document.getElementById('work-detail-view').style.display = 'block';
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function closeWorkDetail() {
-            document.getElementById('work-detail-view').style.display = 'none';
-            document.getElementById('works-list').style.display = 'block';
-            
-            setupObserver();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        function isDetailOpen() {
+            return document.getElementById('work-detail-view').style.display === 'block';
         }
 
-        // --- 네비게이션 스크롤 효과 ---
+        function closeWorkDetail() {
+            document.getElementById('work-detail-view').style.display = 'none';
+            document.getElementById('page-about').style.display = 'block';
+            document.getElementById('works-list').style.display = 'block';
+
+            // 목록으로 돌아오면 영상 포트폴리오 위치로 이동
+            document.getElementById('other-portfolio').scrollIntoView();
+        }
+
+        // --- 네비게이션 스크롤 효과 + 현재 섹션 표시 ---
+        function updateActiveNav() {
+            const works = document.getElementById('page-works');
+            const inWorks = isDetailOpen() || works.getBoundingClientRect().top <= window.innerHeight / 3;
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks[0].classList.toggle('active', !inWorks);
+            navLinks[1].classList.toggle('active', inWorks);
+        }
+
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -789,6 +792,7 @@
             } else {
                 nav.classList.remove('scrolled');
             }
+            updateActiveNav();
         });
 
         // --- Intersection Observer 설정 (스크롤 애니메이션) ---
@@ -819,34 +823,19 @@
 
         document.addEventListener("DOMContentLoaded", setupObserver);
 
-        // --- 탭 페이지 전환 스크립트 ---
-        function switchPage(pageId, navElement) {
-            if(pageId !== 'page-works') {
+        // --- 네비게이션 클릭 시 해당 섹션으로 스크롤 ---
+        function scrollToSection(event, sectionId) {
+            event.preventDefault();
+            if (isDetailOpen()) {
                 document.getElementById('work-detail-view').style.display = 'none';
+                document.getElementById('page-about').style.display = 'block';
                 document.getElementById('works-list').style.display = 'block';
             }
-
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
-
-            const navLinks = document.querySelectorAll('nav a');
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-            });
-
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
+            if (sectionId === 'page-about') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
             }
-
-            if (navElement) {
-                navElement.classList.add('active');
-            }
-
-            setupObserver();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
