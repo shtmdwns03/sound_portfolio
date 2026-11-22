@@ -280,12 +280,13 @@
             border-radius: 2px;
         }
 
-        /* 영상 임베드 레이아웃 (2x2 대칭 그리드) */
+        /* 영상 임베드 레이아웃 (1열로 크게) */
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            margin-top: 20px;
+            grid-template-columns: 1fr;
+            gap: 70px;
+            max-width: 1000px;
+            margin: 20px auto 0;
         }
         .video-item {
             display: flex;
@@ -311,8 +312,8 @@
             border: 0;
         }
         .video-desc { padding: 0 5px; }
-        .video-desc h4 { color: var(--text-main); font-size: 1.25rem; margin: 0 0 8px 0; word-break: keep-all; }
-        .video-desc p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0; word-break: keep-all; }
+        .video-desc h4 { color: var(--text-main); font-size: 1.5rem; margin: 0 0 10px 0; word-break: keep-all; }
+        .video-desc p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin: 0; word-break: keep-all; }
 
         /* 게임 포트폴리오 (목록형) 확장 레이아웃 */
         .game-showcase {
@@ -437,7 +438,7 @@
     <nav id="navbar">
         <a href="#sound-redesign" onclick="scrollToSection(event, 'sound-redesign')" class="active">Re-Design</a>
         <a href="#game-portfolio" onclick="scrollToSection(event, 'game-portfolio')">Game</a>
-        <a href="#other-portfolio" onclick="scrollToSection(event, 'other-portfolio')">Other</a>
+        <!-- <a href="#other-portfolio" onclick="scrollToSection(event, 'other-portfolio')">Other</a> -->
     </nav>
 
     <!-- ==================== ABOUT PAGE (Resume/CV Format) — 현재 숨김 ====================
@@ -598,7 +599,7 @@
                 </div>
             </section>
 
-            <!-- 3. 영상 포트폴리오 섹션 -->
+            <!-- 3. 영상 포트폴리오 섹션 — 이력서에 있으므로 현재 숨김
             <section id="other-portfolio" class="portfolio" style="padding-top: 0;">
                 <h2 class="section-title">Other Portfolio</h2>
                 <div class="work-list">
@@ -652,6 +653,7 @@
 
                 </div>
             </section>
+            -->
         </div>
 
     </div>
